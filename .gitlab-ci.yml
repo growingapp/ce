@@ -1,0 +1,56 @@
+test: 
+    image: ambientum/php:7.0-nginx
+    
+    # Pick zero or more services to be used on all builds.
+    # Only needed when using a docker container to run your tests in.
+    # Check out: http://docs.gitlab.com/ce/ci/docker/using_docker_images.html#what-is-a-service
+    services:
+      - ambientum/mysql:5.7
+    
+    variables:
+      MYSQL_ROOT_PASSWORD: artists
+      MYSQL_DATABASE: artists_test
+      MYSQL_USER: artists
+      MYSQL_PASSWORD: artists  
+      
+    # This folder is cached between builds
+    # http://docs.gitlab.com/ce/ci/yaml/README.html#cache
+    cache:
+      paths:
+      - vendor/
+      - node_modules/
+    
+    script:
+      # Install project dependencies.
+      - composer install --prefer-dist --no-ansi --no-interaction
+      - cp .env.testing .env
+      
+      # Generate an application key.
+      - php artisan key:generate
+      
+      # Copy .env with the new application key to .env.testing
+      - cp -f .env .env.testing
+      
+      # Re-cache.
+      - php artisan config:clear
+    
+      # Run database migrations.
+      - php artisan migrator
+      
+      # run laravel tests
+      - php vendor/bin/phpunit -v --coverage-text --colors=always --stderr --coverage-xml build/coverage-xml/ 
+      
+      - php vendor/bin/codacycoverage phpunit
+
+codequality:
+  image: docker:latest
+  variables:
+    DOCKER_DRIVER: overlay
+  services:
+    - docker:dind
+  script:
+    - docker run --env CODECLIMATE_CODE="$PWD" --volume "$PWD":/code --volume /var/run/docker.sock:/var/run/docker.sock --volume /tmp/cc:/tmp/cc codeclimate/codeclimate:0.69.0 analyze -f json > raw_codeclimate.json
+    - cat raw_codeclimate.json | docker run -i stedolan/jq -c 'map({check_name,fingerprint,location})' > codeclimate.json
+
+  artifacts:
+    paths: [codeclimate.json]

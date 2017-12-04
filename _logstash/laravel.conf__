@@ -1,0 +1,52 @@
+input {
+    file {
+        path => "/data/logs/laravel/laravel.log"
+        start_position => "beginning"
+        type => "laravel_core_log"
+        codec => multiline {
+            pattern => "^\["
+            what => "previous"
+            negate => true
+        }
+    }
+    file {
+        path => "/data/logs/laravel/invoices.log"
+        type => "analytics"
+        codec => json
+    }
+
+}
+
+filter {
+    if [type] == "laravel_core_logs" {
+        grok {
+            match => { "message" => "\[%{TIMESTAMP_ISO8601:timestamp}\] %{DATA:env}\.%{DATA:severity}: %{DATA:message}" }
+        }
+    }
+
+    if [type] == "analytics" {
+        grok {
+            match => { "message" => "\[%{TIMESTAMP_ISO8601:timestamp}\] application=%{DATA:application} event=%{DATA:index}\.%{DATA:event} data=%{GREEDYDATA:event_body}" }
+        }
+    }
+}
+
+output {
+    if [type] == "laravel_core_log" {
+        elasticsearch {
+            hosts => ["elasticsearch:9200"]
+            index => "laravel_logs"
+        }
+    }
+
+    if [type] == "analytics" {
+        elasticsearch {
+            hosts => ["elasticsearch:9200"]
+            index => "analytics_log"
+        }
+
+        file {
+            path => "teste.txt"
+        }
+    }
+}

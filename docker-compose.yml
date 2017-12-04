@@ -1,0 +1,91 @@
+####
+# ATENTION:
+# Replace all occurences of growingapp with your project's name
+####
+
+# v2 syntax
+version: '2.2'
+
+# Named volumes
+volumes:
+  growingapp-elasticsearch-data:
+      driver: local
+  growingapp-elasticsearch-cluster-data:
+      driver: local
+
+  # MySQL Data
+  growingapp-mysql-data:
+    driver: local
+  growingapp-mysql-test-data:
+    driver: local
+
+services:
+  # MySQL (5.7)
+  mysql:
+    image: ambientum/mysql:5.7
+    container_name: growingapp-mysql
+    volumes:
+      - growingapp-mysql-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=growingapp
+      - MYSQL_DATABASE=growingapp
+      - MYSQL_USER=growingapp
+      - MYSQL_PASSWORD=growingapp
+
+  # MySQL (5.7)
+  mysql_test:
+    image: ambientum/mysql:5.7
+    container_name: growingapp-mysql-test
+    volumes:
+      - growingapp-mysql-test-data:/var/lib/mysql
+    ports:
+      - "3307:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=growingapp
+      - MYSQL_DATABASE=growingapp_test
+      - MYSQL_USER=growingapp
+      - MYSQL_PASSWORD=growingapp
+
+#  elasticsearch:
+#    image: docker.elastic.co/elasticsearch/elasticsearch:6.0.0
+#    container_name: growingapp-elasticsearch
+#    volumes:
+#      - $PWD/elasticsearch-data:/usr/share/elasticsearch/data
+#    ports:
+#      - "9200:9200"
+#    environment:
+#      - cluster.name=docker-cluster
+#      - bootstrap.memory_lock=true
+#      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+#    ulimits:
+#      memlock:
+#        soft: -1
+#        hard: -1
+#
+#  kibana:
+#    image: docker.elastic.co/kibana/kibana:6.0.0
+#    container_name: growingapp-kibana
+#    ports:
+#      - 5601:5601
+#
+#  logstash:
+#      image: docker.elastic.co/logstash/logstash:6.0.0
+#      container_name: growingapp-logstash
+#      volumes:
+#        - $PWD/_logstash/laravel.conf:/usr/share/logstash/pipeline/logstash.conf
+#        - $PWD/storage/logs:/data/logs/laravel
+
+  # PHP (with Caddy)
+  app:
+    image: ambientum/php:7.0-nginx
+    container_name: growingapp-app
+    volumes:
+      - .:/var/www/app
+    ports:
+      - "81:8080"
+    links:
+#      - elasticsearch
+      - mysql
+      - mysql_test

@@ -10,3 +10,11 @@
     }
   }
 }
+
+@mixin badge-outline-variant($color) {
+  color: $color;
+  background-color: transparent;
+  background-image: none;
+  border-color: $color;
+  font-weight: normal;
+}

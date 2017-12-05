@@ -36,7 +36,7 @@ $grays: map-merge((
 
 $blue:    #007bff !default;
 $indigo:  #6610f2 !default;
-$purple:  #6f42c1 !default;
+$purple:  #563d7c !default;
 $pink:    #e83e8c !default;
 $red:     #dc3545 !default;
 $orange:  #fd7e14 !default;
@@ -59,7 +59,8 @@ $colors: map-merge((
   "cyan":       $cyan,
   "white":      $white,
   "gray":       $gray-600,
-  "gray-dark":  $gray-800
+  "gray-dark":  $gray-800,
+  "black":      $black
 ), $colors);
 
 $primary:       $blue !default;
@@ -75,12 +76,14 @@ $theme-colors: () !default;
 $theme-colors: map-merge((
   "primary":    $primary,
   "secondary":  $secondary,
+  "purple":     $purple,
   "success":    $success,
   "info":       $info,
   "warning":    $warning,
   "danger":     $danger,
   "light":      $light,
-  "dark":       $dark
+  "dark":       $dark,
+  "black":      $black,
 ), $theme-colors);
 // stylelint-enable
 
@@ -130,7 +133,7 @@ $sizes: (
 //
 // Settings for the `<body>` element.
 
-$body-bg:                   $gray-400 !default;
+$body-bg:                   $gray-300 !default;
 $body-color:                $gray-900 !default;
 
 // Links
@@ -221,7 +224,7 @@ $font-family-monospace:       "SFMono-Regular", Menlo, Monaco, Consolas, "Libera
 $font-family-base:            $font-family-sans-serif !default;
 // stylelint-enable value-keyword-case
 
-$font-size-base:              1rem !default; // Assumes the browser default, typically `16px`
+$font-size-base:              0.875rem !default; // Assumes the browser default, typically `16px`
 $font-size-lg:                ($font-size-base * 1.25) !default;
 $font-size-sm:                ($font-size-base * .875) !default;
 
@@ -497,8 +500,8 @@ $dropdown-link-active-bg:           $component-active-bg !default;
 
 $dropdown-link-disabled-color:      $gray-600 !default;
 
-$dropdown-item-padding-y:           .25rem !default;
-$dropdown-item-padding-x:           1.5rem !default;
+$dropdown-item-padding-y:           .30rem !default;
+$dropdown-item-padding-x:           1.55rem !default;
 
 $dropdown-header-color:             $gray-600 !default;
 
@@ -666,7 +669,7 @@ $badge-font-weight:                 $font-weight-bold !default;
 $badge-padding-y:                   .25em !default;
 $badge-padding-x:                   .4em !default;
 $badge-border-radius:               $border-radius !default;
-
+$badge-border-width:                 $border-width !default;
 $badge-pill-padding-x:              .6em !default;
 // Use a higher than normal value to ensure completely rounded edges when
 // customizing padding or font-size on labels.

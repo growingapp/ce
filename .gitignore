@@ -1,33 +1,42 @@
-/node_modules
-/public/hot
-/public/storage
-/storage/*.key
-/vendor
-/.idea
-/.vagrant
-Homestead.json
-Homestead.yaml
-npm-debug.log
-yarn-error.log
-.env
-
-# OS generated files #
-######################
+################################
+# IGNORING DOT FILES           #
+################################
 .DS_Store
 .DS_Store?
 ._*
 .Spotlight-V100
 .Trashes
-ehthumbs.db
-Thumbs.db
-
-# IDE files #
-#############
-nbproject
 .~lock.*
 .buildpath
 .idea
 .project
 .settings
+.env
+/.idea
+/.vagrant
+
+################################
+# IGNORING FILES               #
+################################
 composer.lock
+ehthumbs.db
+Thumbs.db
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+
+################################
+# IGNORING FOLDERS             #
+################################
+/node_modules
+/public/hot
+/public/storage
+/storage/*.key
+/vendor
+
+################################
+# IGNORING OTHERS...           #
+################################
 build/
+nbproject

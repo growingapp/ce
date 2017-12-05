@@ -11,5 +11,10 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+mix.sass('resources/assets/bootstrap/scss/bootstrap.scss', 'public/assets/bootstrap');
+
+if (mix.inProduction()) {
+    mix.version();
+}
+
+mix.browserSync('localhost:8085');

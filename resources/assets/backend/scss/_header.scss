@@ -1,0 +1,24 @@
+header.navbar {
+  margin: 0;
+  padding: 0 1rem;
+  .ig-account {
+    .ig-avatar {
+      margin-right: 0px;
+    }
+    .ig-status {
+      margin-left: 15px;
+    }
+  }
+  .dropdown-menu{
+    margin-top: 0;
+    border-top: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+  .dropdown-menu.dropdown-menu-left{
+    margin-left: -1px;
+  }
+  .dropdown-menu.dropdown-menu-right{
+    margin-right: -1px;
+  }
+}

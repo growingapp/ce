@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Growing.App'),
 
     /*
     |--------------------------------------------------------------------------
@@ -179,6 +179,7 @@ return [
         App\Core\Providers\EventServiceProvider::class,
         App\Core\Providers\RouteServiceProvider::class,
         \App\Applications\Api\V1\Providers\ApiV1ServiceProvider::class,
+        \App\Applications\Backend\Providers\BackendServiceProvider::class,
 
     ],
 

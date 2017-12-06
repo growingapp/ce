@@ -3,6 +3,7 @@
 return [
     "add_new_account" => "Add new account",
     "choose_account" => "Choose Account",
+    "featured" => "Featured Posts",
     "logged" => "Logged",
     "recent_posts" => "Recent Posts",
     "top_posts" => "TOP Posts",

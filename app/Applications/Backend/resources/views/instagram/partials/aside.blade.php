@@ -11,25 +11,22 @@
          alt="Mauricio Rodrigues">
 
     <div class="card-body text-center">
-        <h5 class="card-title">Mauricio Rodrigues</h5>
-        <p class="card-text">@mauricio.vsr</p>
+        <h6 class="card-title">Mauricio Rodrigues</h6>
+        <p class="card-text"><small>@mauricio.vsr</small></p>
     </div>
 
     <ul class="list-group list-group-flush">
-        <li class="list-group-item"><a href="#"><i class="fa fa-instagram"></i> New Post</a></li>
-        <li class="list-group-item"><a href="#"><i class="fa fa-picture-o"></i> New Album</a></li>
-        <li class="list-group-item"><a href="#"><i class="fa fa-history"></i> New Story</a></li>
+        <li class="list-group-item"><a href="#"><i class="fa fa-instagram"></i> {{ trans('backend::instagram.new_post') }}</a></li>
+        <li class="list-group-item"><a href="#"><i class="fa fa-picture-o"></i> {{ trans('backend::instagram.new_album') }}</a></li>
+        <li class="list-group-item"><a href="#"><i class="fa fa-history"></i> {{ trans('backend::instagram.new_story') }}</a></li>
     </ul>
 
-    <div class="card-header">News</div>
+    <div class="card-header section">News</div>
 
     <ul class="list-group list-group-flush">
-        <li class="list-group-item"><a href="#"><i class="fa fa-inbox"></i> Timeline</a></li>
-        <li class="list-group-item"><a href="#"><i class="fa fa-feed"></i> Feed</a></li>
-        <li class="list-group-item"><a href="#"><i class="fa fa-heart-o"></i> Liked Posts</a></li>
-        <li class="list-group-item"><a href="#"><i class="fa fa-tags"></i> Tagged</a></li>
+        <li class="list-group-item"><a href="#"><i class="fa fa-inbox"></i> {{ trans('backend::instagram.timeline') }}</a></li>
+        <li class="list-group-item"><a href="#"><i class="fa fa-feed"></i> {{ trans('backend::instagram.feed') }}</a></li>
+        <li class="list-group-item"><a href="#"><i class="fa fa-heart-o"></i> {{ trans('backend::instagram.liked_post') }}</a></li>
+        <li class="list-group-item"><a href="#"><i class="fa fa-tags"></i> {{ trans('backend::instagram.tagged') }}</a></li>
     </ul>
-    <div class="card-body text-center">
-        <a href="#" class="btn btn-outline-primary btn-sm">Disconnect</a>
-    </div>
 </aside>

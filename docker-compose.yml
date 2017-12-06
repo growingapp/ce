@@ -77,6 +77,12 @@ services:
 #        - $PWD/_logstash/laravel.conf:/usr/share/logstash/pipeline/logstash.conf
 #        - $PWD/storage/logs:/data/logs/laravel
 
+  redis:
+    image: redis:3.0.7
+    container_name: growingapp_redis
+    ports:
+      - "6379:6379"
+
   # PHP (with Caddy)
   app:
     image: ambientum/php:7.0-nginx
@@ -87,5 +93,6 @@ services:
       - "8085:8080"
     links:
 #      - elasticsearch
+      - redis
       - mysql
       - mysql_test

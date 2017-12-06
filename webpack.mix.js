@@ -14,7 +14,10 @@ let mix = require('laravel-mix');
 mix.sass('resources/assets/bootstrap/scss/bootstrap.scss', 'public/assets/bootstrap/css')
     .js('resources/assets/bootstrap/js/index.js', 'public/assets/bootstrap/js/bootstrap.js')
     .sass('resources/assets/backend/scss/backend.scss', 'public/assets/backend/css')
-    .copy('resources/assets/images/logo-small.png', 'public/assets/images');
+    .copy([
+        'resources/assets/images/logo-small.png',
+        'resources/assets/images/logo-full.png'
+    ], 'public/assets/images');
 
 if (mix.inProduction()) {
     mix.version();

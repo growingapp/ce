@@ -13,8 +13,8 @@
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #fff;
-                color: #636b6f;
+                background-color: #652874;
+                color: #fff;
                 font-family: 'Raleway', sans-serif;
                 font-weight: 100;
                 height: 100vh;
@@ -50,13 +50,17 @@
             }
 
             .links > a {
-                color: #636b6f;
+                color: #fff;
                 padding: 0 25px;
                 font-size: 12px;
                 font-weight: 600;
                 letter-spacing: .1rem;
                 text-decoration: none;
                 text-transform: uppercase;
+            }
+
+            .links > a:hover {
+                text-decoration: underline;
             }
 
             .m-b-md {
@@ -66,28 +70,17 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
-                    @endauth
-                </div>
-            @endif
-
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    <img src="{{ mix('assets/images/logo-full.png') }}" alt="{{ config('app.name') }}">
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <a href="/app">Login</a>
+                    <a href="https://github.com/growingapp">Download</a>
+                    <a href="https://github.com/growingapp/app/wiki">Documentation</a>
+                    <a href="https://github.com/growingapp/app#contributing">Contribute</a>
+
                 </div>
             </div>
         </div>
